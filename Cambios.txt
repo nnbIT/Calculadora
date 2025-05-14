@@ -1,0 +1,77 @@
+# Primer cambio TRY de numeros
+
+    Problema: Al escribir mal el segundo numero volvia a solicitar el primero
+    Codigo:
+
+    while True:
+        try:
+            a = float(input("Ingresa el primer número: "))
+            b = float(input("Ingresa el segundo número: "))
+            return a, b
+        except ValueError:
+            print("❌ Error: Solo se permiten números. Intenta de nuevo.")
+
+    Razon: La solicitud de ambos numeros se realiza dentro del mismo try
+    Comentarios: Al ser una calculadora basica se puede permitir esta forma y aceptar que el usuario cometa errores
+                Se mantiene el codigo mas corto y eficiente, pero me gusta atrapar errores
+ Solucion: Separar los numeros en un try distinto
+    Codigo:
+
+    while True:
+        try:
+            a = float(input("Ingresa el primer número: "))
+            break
+        except ValueError:
+            print("❌ Error: Ingresa un número válido para el primer valor.")
+
+    while True:
+        try:
+            b = float(input("Ingresa el segundo número: "))
+            break
+        except ValueError:
+            print("❌ Error: Ingresa un número válido para el segundo valor.")
+
+    return a, b
+
+    Comentarios: Si es mas efectiva y soluciona el error pero es algo larga (14 lineas), es el doble de la original
+
+# Segundo cambio Implementar una funcion de verificar
+
+    Objetivo: verificar por medio de una funcion responsive, si los numeros y la operacion seleccionada son los que deseaba el usuario
+    1 Problema: La funcion al ingresar el numero 1 da error: NameError: name 'num1' is not defined
+    Razon: al pedir los numeros los guardaba en otra variable, y al verificar los numeros en otra variable que no se inicializa
+
+    Codigo:
+
+        a = float(input("Ingresa el primer número: "))
+            if confirmar_dato(num1, "número"):
+             break
+
+        b = float(input("Ingresa el primer número: "))
+            if confirmar_dato(num2, "número"):
+             break
+
+        return a, b
+
+
+    Solucion 1: inicializar las variables num1 y num2
+
+    Codigo:
+    num1=0
+    num2=0
+
+    Problema: Al verificar el numero no se mostramaba el numero que ingreso el usuario sino el 0 con el que se inicializa
+             Pero si se continua el programa se realiza las operaciones con los numeros del usuario
+
+
+    Solucion 2: inicializar las variables dentro de la solicitud de los numeros
+
+    Codigo:
+
+        num1 = float(input("Ingresa el primer número: "))
+            if confirmar_dato(num1, "número"):
+             break
+
+        num2 = float(input("Ingresa el segundo número: "))
+            if confirmar_dato(num2, "número"):
+             break
